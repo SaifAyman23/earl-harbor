@@ -70,6 +70,7 @@ public class JTableDB extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         Cargotbl = new javax.swing.JTable();
+        exit = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -257,6 +258,16 @@ public class JTableDB extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(Cargotbl);
 
+        exit.setBackground(new java.awt.Color(0, 153, 153));
+        exit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        exit.setForeground(new java.awt.Color(255, 255, 255));
+        exit.setText("exit");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -303,7 +314,9 @@ public class JTableDB extends javax.swing.JFrame {
                         .addGap(45, 45, 45))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(exit))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -332,21 +345,28 @@ public class JTableDB extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(cargobtn)
                                             .addComponent(jButton4))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(160, 160, 160))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                        .addComponent(Dockbtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
-                        .addGap(475, 475, 475))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addComponent(Dockbtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton3)
+                                .addGap(475, 475, 475))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(exit)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
 
         pack();
@@ -382,6 +402,43 @@ public class JTableDB extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnshipActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DefaultTableModel model = (DefaultTableModel)tblclient.getModel();
+        model.setRowCount(0);
+        model.setRowCount(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        DefaultTableModel model = (DefaultTableModel)tblship.getModel();
+        model.setRowCount(0);
+        model.setRowCount(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void DockbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DockbtnActionPerformed
+        // TODO add your handling code here:
+        String sql = "SELECT * FROM docking_bay";
+        try{
+            PreparedStatement pst = con.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            DefaultTableModel model = (DefaultTableModel)docktbl.getModel();
+            model.setRowCount(0);
+            while(rs.next()){
+                model.addRow(new String [] {
+                    rs.getString(1),rs.getString(2),rs.getString(3)
+                });
+            }
+        }catch(Exception ex){
+            System.out.println("Error");
+        }
+    }//GEN-LAST:event_DockbtnActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel)docktbl.getModel();
+        model.setRowCount(0);
+        model.setRowCount(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void btnvesselActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvesselActionPerformed
         String sql = "SELECT * FROM vessel";
         try{
@@ -397,46 +454,18 @@ public class JTableDB extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnvesselActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DefaultTableModel model = (DefaultTableModel)tblclient.getModel();
-        model.setRowCount(0);
-        model.setRowCount(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        DefaultTableModel model = (DefaultTableModel)tblship.getModel();
-        model.setRowCount(0);
-        model.setRowCount(0);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
         DefaultTableModel model = (DefaultTableModel)tblvessel.getModel();
         model.setRowCount(0);
         model.setRowCount(0);
     }//GEN-LAST:event_ClearActionPerformed
 
-    private void DockbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DockbtnActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        String sql = "SELECT * FROM docking_bay";
-        try{
-            PreparedStatement pst = con.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-            DefaultTableModel model = (DefaultTableModel)docktbl.getModel();
-            model.setRowCount(0);
-            while(rs.next()){
-                model.addRow(new String [] {rs.getString(1),rs.getString(2),rs.getString(3)});
-            }
-        }catch(Exception ex){
-            System.out.println("Error");
-        }
-    }//GEN-LAST:event_DockbtnActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)docktbl.getModel();
+        DefaultTableModel model = (DefaultTableModel)Cargotbl.getModel();
         model.setRowCount(0);
         model.setRowCount(0);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void cargobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargobtnActionPerformed
         // TODO add your handling code here:
@@ -454,12 +483,10 @@ public class JTableDB extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cargobtnActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)Cargotbl.getModel();
-        model.setRowCount(0);
-        model.setRowCount(0);
-    }//GEN-LAST:event_jButton4ActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_exitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -505,6 +532,7 @@ public class JTableDB extends javax.swing.JFrame {
     private javax.swing.JButton btnvessel;
     private javax.swing.JButton cargobtn;
     private javax.swing.JTable docktbl;
+    private javax.swing.JButton exit;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
