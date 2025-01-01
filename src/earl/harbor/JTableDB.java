@@ -244,7 +244,7 @@ public class JTableDB extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Type", "Weight", "Quantity", "Shipment ID"
+                "ID", "Type", "Weight", "Quantity"
             }
         ));
         jScrollPane6.setViewportView(Cargotbl);

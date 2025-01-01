@@ -67,6 +67,11 @@ public class EarlHarbor extends javax.swing.JFrame {
         insertBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         insertBtn.setForeground(new java.awt.Color(255, 255, 255));
         insertBtn.setText("Insert Data");
+        insertBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertBtnActionPerformed(evt);
+            }
+        });
 
         calcCustoms.setBackground(new java.awt.Color(0, 102, 102));
         calcCustoms.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -147,6 +152,12 @@ public class EarlHarbor extends javax.swing.JFrame {
         new EditTable().setVisible(true);
     }//GEN-LAST:event_modifyBtnActionPerformed
 
+    private void insertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBtnActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new inserting_page_jframe().setVisible(true);
+    }//GEN-LAST:event_insertBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -177,7 +188,7 @@ public class EarlHarbor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EarlHarbor().setVisible(true);
+                new Loginform().setVisible(true);
             }
         });
     }
