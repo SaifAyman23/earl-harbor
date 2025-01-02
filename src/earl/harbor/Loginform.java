@@ -31,6 +31,7 @@ public class Loginform extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setLocation(new java.awt.Point(250, 170));
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 102));
 

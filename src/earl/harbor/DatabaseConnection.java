@@ -25,10 +25,8 @@ public class DatabaseConnection {
 
             // Establish the connection
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            System.out.print("success");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.print("error");
         }
         return connection;
     }

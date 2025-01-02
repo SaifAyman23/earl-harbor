@@ -77,6 +77,7 @@ public class JTableDB extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(180, 10));
 
         btnclient.setBackground(new java.awt.Color(0, 153, 153));
         btnclient.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -386,7 +387,8 @@ public class JTableDB extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel)tblship.getModel();
             model.setRowCount(0);
             while(rs.next()){
-                model.addRow(new String [] {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9)});
+                model.addRow(new String [] {rs.getString(1),rs.getString(2),rs.getString(3),
+                    rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9)});
             }
         }catch(Exception ex){
             System.out.println("Error");
@@ -438,7 +440,8 @@ public class JTableDB extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel)tblvessel.getModel();
             model.setRowCount(0);
             while(rs.next()){
-                model.addRow(new String [] {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10)});
+                model.addRow(new String [] {rs.getString(1),rs.getString(2),rs.getString(3),
+                    rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10)});
             }
         }catch(Exception ex){
             System.out.println("Error");
